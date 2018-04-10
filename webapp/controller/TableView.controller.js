@@ -15,8 +15,8 @@ sap.ui.define ([
 		//	onInit: function() {
 		//
 		//	},
-		onSelect: function(oEvent) {
-			
+		onSelect: function(oEvent) 
+		{
 			console.log(this.getView().byId("cb1").getSelected());
 		},
 		onActionPay: function() {
