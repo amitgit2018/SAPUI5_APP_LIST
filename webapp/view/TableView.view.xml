@@ -1,0 +1,72 @@
+<mvc:View xmlns:core="sap.ui.core"
+xmlns:footerbar="sap.ushell.ui.footerbar" 
+xmlns:semantic="sap.m.semantic" 
+xmlns:mvc="sap.ui.core.mvc" 
+xmlns="sap.m" 
+xmlns:html="http://www.w3.org/1999/xhtml" 
+	controllerName="com.sapZSAPI5_ODATA_MANIFEST.controller.TableView">
+	<App>
+		<semantic:FullscreenPage title="Product List" showNavButton="true" navButtonPress="onNavBack">
+				<semantic:content>
+					<Table id="tabone" class="sapUiResponsiveMargin"
+						items="{ path : 'prod>/Products', sorter: { path: 'ProductName', descending: false }, parameters: {'expand': 'Supplier,Category'} }"
+						width="auto" growingThreshold="5" growing="true" growingScrollToLoad="true" growingTriggerText="More" mode="None">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="Products" level="H2"/>
+								<ToolbarSpacer/>
+								<!--<Button id="pay" text="Pay" type="Accept" press="onActionPay"></Button>-->
+								<ToolbarSpacer/>
+								<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="onSortFilter" />
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column width="12em">
+								<Text text="Product"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Supplier Name"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Category Name"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Quantity Per Unit"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Center">
+								<Text text="Reorder Level"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="false" hAlign="Center">
+								<Text text="Discontinued"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+								<Text text="Units In Stock"/>
+							</Column>
+							<Column hAlign="End">
+								<Text text="Unit Price"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem press="onRowPress" type="Active">
+								<cells>
+									<ObjectIdentifier title="{prod>ProductName}" text="{prod>ProductID}"/>
+									<Text text="{prod>Supplier/CompanyName}"/>
+									<!--<Text text="{prod>SupplierID}"/>
+									<Text text="{prod>CategoryID}"/>-->
+									<Text text="{prod>Category/CategoryName}"/>
+									<Text text="{prod>QuantityPerUnit}"/>
+									<Text text="{prod>ReorderLevel}"/>
+									<Text text="{prod>Discontinued}"/>
+									<Text text="{prod>UnitsInStock}"/>
+									<!--<Text text="{prod>UnitPrice}"/>-->
+									<ObjectStatus text="{prod>UnitPrice}"
+										state="{ path: 'prod>UnitPrice', formatter: 'com.sapZSAPI5_ODATA_MANIFEST.controller.Formatter.price' }"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					
+				</semantic:content>
+			</semantic:FullscreenPage>
+	</App>
+</mvc:View>
