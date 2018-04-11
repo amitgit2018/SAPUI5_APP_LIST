@@ -3,7 +3,7 @@ sap.ui.define ([
 "sap/m/MessageBox",
 "./Formatter"
 ], function ( Controller, MessageBox, Formatter) {
-	"use strict" ; 
+	"use strict"; 
 
 	return Controller.extend("com.sapZSAPI5_ODATA_MANIFEST.controller.TableView", {
 

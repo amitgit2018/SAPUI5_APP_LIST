@@ -9,7 +9,7 @@ xmlns:html="http://www.w3.org/1999/xhtml"
 		<semantic:FullscreenPage title="Product List" showNavButton="true" navButtonPress="onNavBack">
 				<semantic:content>
 					<Table id="tabone" class="sapUiResponsiveMargin"
-						items="{ path : 'prod>/Products', sorter: { path: 'ProductName', descending: false }, parameters: {'expand': 'Supplier,Category'} }"
+						items="{ path : 'prod>/Products', sorter: { path: 'ProductName', descending: true }, parameters: {'expand': 'Supplier,Category'} }"
 						width="auto" growingThreshold="5" growing="true" growingScrollToLoad="true" growingTriggerText="More" mode="None">
 						<headerToolbar>
 							<Toolbar>
@@ -17,7 +17,14 @@ xmlns:html="http://www.w3.org/1999/xhtml"
 								<ToolbarSpacer/>
 								<!--<Button id="pay" text="Pay" type="Accept" press="onActionPay"></Button>-->
 								<ToolbarSpacer/>
-								<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="onSortFilter" />
+								<Button id="normalIcon" icon="sap-icon://document" press="onNormal"/>
+								<Button id="specialIcon" icon="sap-icon://unfavorite" press="onSpecial"/>
+								<Button id="clearedIcon" icon="sap-icon://status-positive" press="onCleared"/>
+								<Button id="openIcon" icon="sap-icon://status-error" press="onOpen"/>
+								<Button id="dateIcon" icon="sap-icon://check-availability" press="onDate"/>
+								<Button id="downloadIcon" icon="sap-icon://download" press="onDataExport"/>
+								<Button id="clearIcon" icon="sap-icon://clear-filter" press="onClearFilters"/>
+								<!--<Button tooltip="View Settings" icon="sap-icon://drop-down-list" press="onSortFilter" />-->
 							</Toolbar>
 						</headerToolbar>
 						<columns>
@@ -59,8 +66,7 @@ xmlns:html="http://www.w3.org/1999/xhtml"
 									<Text text="{prod>Discontinued}"/>
 									<Text text="{prod>UnitsInStock}"/>
 									<!--<Text text="{prod>UnitPrice}"/>-->
-									<ObjectStatus text="{prod>UnitPrice}"
-										state="{ path: 'prod>UnitPrice', formatter: 'com.sapZSAPI5_ODATA_MANIFEST.controller.Formatter.price' }"/>
+									<ObjectStatus text="{prod>UnitPrice}" state="{ path: 'prod>UnitPrice', formatter: 'com.sapZSAPI5_ODATA_MANIFEST.controller.Formatter.price' }"/>
 								</cells>
 							</ColumnListItem>
 						</items>
